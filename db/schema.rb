@@ -10,7 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_09_081932) do
+ActiveRecord::Schema.define(version: 2023_07_15_062946) do
+
+  create_table "book_images", force: :cascade do |t|
+    t.string "book_image_main_id"
+    t.string "book_image_sub1_id"
+    t.string "book_image_sub2_id"
+    t.string "book_image_sub3_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "title", null: false
+    t.text "body_question"
+    t.text "body_answer"
+    t.string "author", null: false
+    t.integer "page", null: false
+    t.integer "chapter"
+    t.integer "section"
+    t.integer "book_image"
+    t.integer "branch_id"
+    t.integer "isbn"
+    t.integer "topic_main_id"
+    t.integer "topic_sub_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
