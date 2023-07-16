@@ -27,7 +27,7 @@
             <tr>
               <td><%= attachment_image_tag @book.user, :profile_image, :fit, 60, 60, fallback: "default-image.jpg"  %><br/><%= link_to @user.name, user_path(@book.user_id) %></td>
               <td class="text-break"><%= link_to @book.title , book_path(@book.id)%></td>　<!--本のタイトルクリックしたら、showアクション再起動-->
-              <td class="text-break"><%= @book.body %></td>
+              <td class="text-break"><%= @book.body_answer %></td>
 
               <% if @user.id == current_user.id %>
                 <!--rails routesのPrefixを使う。アンダーバーの前。-->

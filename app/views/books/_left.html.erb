@@ -37,9 +37,23 @@
             <%= f.text_field :title, class:"form-control"%>
           </div>
           <div class="form-group">
-            <%=f.label :body_answer,"Opinion"%>
+            <%=f.label :body_question,"Question"%>
+            <%= f.text_area :body_question,class:"form-control"%>
+          </div>
+          <div class="form-group">
+            <%=f.label :body_answer,"Answer"%>
             <%= f.text_area :body_answer,class:"form-control"%>
           </div>
+          <div class="form-group">
+            <%=f.label :author,"Author"%>
+            <%= f.text_field :author,class:"form-control"%>
+          </div>
+          <div class="form-group">
+            <%=f.label :page%>
+            <%= f.text_field :page,class:"form-control"%>
+          </div>
+
+
             <%= f.submit 'Create Book',class: "btn btn-success" %>
         <% end %>
       </div>

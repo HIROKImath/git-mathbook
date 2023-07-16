@@ -100,7 +100,7 @@ before_action :correct_user, only: [:edit]
   private
   # ストロングパラメータ
     def book_params
-      params.require(:book).permit(:title, :body, :user_id)
+      params.require(:book).permit(:title,:body_question, :body_answer, :user_id, :author, :page)
     end
 
 # https://qiita.com/nao0725/items/47606b8975603a12fd5e
