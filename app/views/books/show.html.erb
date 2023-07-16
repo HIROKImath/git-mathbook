@@ -1,0 +1,47 @@
+<!--全体-->
+<main>
+  <p id="notice"><%= flash[:notice] %></p>
+  <div class='container px-5 px-sm-0'>
+    <div class='row'>
+
+<!--左部分-->
+<!--New bookの入力欄を空欄にするため、createで代入されたインスタンス変数と、別のインスタンス変数を使う-->
+   <%= render 'books/left', book: @book_new ,user: @user%>
+
+<!--右部分 -->
+<!--ログインしているユーザーが投稿したbook　1冊だけ表示-->
+      <div class='col-md-8 offset-md-1'>
+        <h2>Book detail</h2>
+
+        <table class='table table-hover table-inverse'>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Body</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td><%= attachment_image_tag @book.user, :profile_image, :fit, 60, 60, fallback: "default-image.jpg"  %><br/><%= link_to @user.name, user_path(@book.user_id) %></td>
+              <td class="text-break"><%= link_to @book.title , book_path(@book.id)%></td>　<!--本のタイトルクリックしたら、showアクション再起動-->
+              <td class="text-break"><%= @book.body %></td>
+
+              <% if @user.id == current_user.id %>
+                <!--rails routesのPrefixを使う。アンダーバーの前。-->
+                <!--classの後は、「：」。参照サイト：https://railsdoc.com/page/link_to-->
+                <td><%= link_to 'Edit', edit_book_path(@book.id),class: "btn btn-success"%></td>
+                <td><%= link_to "Destroy", book_path(@book.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか？"%></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+<!--全体-->
+    </div>
+  </div>
+</main>
