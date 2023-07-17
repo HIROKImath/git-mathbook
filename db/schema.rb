@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_15_062946) do
+ActiveRecord::Schema.define(version: 2023_07_17_025706) do
 
   create_table "book_images", force: :cascade do |t|
     t.string "book_image_main_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2023_07_15_062946) do
     t.integer "page", null: false
     t.integer "chapter"
     t.integer "section"
-    t.integer "book_image"
+    t.integer "book_image_id"
     t.integer "branch_id"
     t.integer "isbn"
     t.integer "topic_main_id"

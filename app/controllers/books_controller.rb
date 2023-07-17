@@ -64,10 +64,6 @@ before_action :correct_user, only: [:edit]
     # end
 
   end
-  
-  def edit_admin
-    @book = Book.find(params[:id])
-  end
 
   def update
     @book = Book.find(params[:id])
@@ -104,7 +100,7 @@ before_action :correct_user, only: [:edit]
   private
   # ストロングパラメータ
     def book_params
-      params.require(:book).permit(:title,:body_question, :body_answer, :user_id, :author, :page)
+      params.require(:book).permit(:title,:body_question, :body_answer, :user_id, :author, :page, :chapter,:section,:isbn)
     end
 
 # https://qiita.com/nao0725/items/47606b8975603a12fd5e
