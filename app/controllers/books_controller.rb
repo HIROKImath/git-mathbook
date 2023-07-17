@@ -64,6 +64,10 @@ before_action :correct_user, only: [:edit]
     # end
 
   end
+  
+  def edit_admin
+    @book = Book.find(params[:id])
+  end
 
   def update
     @book = Book.find(params[:id])
