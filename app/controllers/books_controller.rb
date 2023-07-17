@@ -42,7 +42,7 @@ before_action :correct_user, only: [:edit]
     # https://pikawaka.com/rails/flash
     if @book.save
       flash[:notice] = "You have created book successfully."
-      redirect_to book_path(@book.id)
+      redirect_to new_book_book_image_path(@book.id)
     else
       render :index
       # render template: "users/show"

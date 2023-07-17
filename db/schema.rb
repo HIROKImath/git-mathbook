@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_17_025706) do
+ActiveRecord::Schema.define(version: 2023_07_17_133424) do
 
   create_table "book_images", force: :cascade do |t|
     t.string "book_image_main_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2023_07_17_025706) do
     t.string "book_image_sub3_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "book_id"
   end
 
   create_table "books", force: :cascade do |t|
