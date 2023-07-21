@@ -28,34 +28,23 @@
     </div>
 
     <div class="form-group">
-      <%=f.label :page%>
-      <%= f.number_field :page,class:"form-control"%>
-    </div>
-
-    <div class="form-group">
-      <%=f.label :chapter%>
-      <%= f.number_field :chapter,class:"form-control"%>
-    </div>
-
-    <div class="form-group">
-      <%=f.label :section%>
-      <%= f.number_field :section,class:"form-control"%>
-    </div>
-
-    <div class="form-group">
-      <%=f.label :isbn%>
+      <%=f.label :isbn,"ISBN"%>
       <%= f.text_field :isbn,class:"form-control"%>
     </div>
 
-
     <div class="form-group">
-      <%=f.label :body_question,"Question"%>
-      <%= f.text_area :body_question,class:"form-control"%>
+      <%=f.label :book_image,"Now Image"%></br>
+      <%= attachment_image_tag @book, :book_image, :fit, 200, 200, fallback: "default-image.jpg" %>
     </div>
 
     <div class="form-group">
-      <%=f.label :body_answer,"Opinion"%>
-      <%= f.text_area :body_answer,class:"form-control" %>
+      <%=f.label :book_image,"Future Image"%>
+      <%= f.attachment_field :book_image, class:"form-control-file", id:"inputImage" %>
+    </div>
+
+    <div class="form-group">
+      <%=f.label :body,"Comment"%>
+      <%= f.text_area :body,class:"form-control"%>
     </div>
 
     <div class="form-group">
@@ -63,7 +52,7 @@
     </div>
   <% end %>
 
-  <%= link_to 'Show', book_path(@book.id) %><%= " | "%><%= link_to "Back", "/books" %>
+  <%= link_to 'Show', book_path(@book.id) %><%= " | "%><%= link_to "Back Index", books_path %>
 
 <!--Bootstrap部分  -->
   </div>
