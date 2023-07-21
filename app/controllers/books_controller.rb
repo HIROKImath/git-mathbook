@@ -2,17 +2,30 @@ class BooksController < ApplicationController
   # 参照サイト：https://qiita.com/nao0725/items/47606b8975603a12fd5e
 before_action :correct_user, only: [:edit]
 
-  def index
-    #ref:Lesson4,Chapter 4 投稿機能を作ろう
-    # Viewへ渡すためのインスタンス変数に空のモデルオブジェクトを生成する。
-    @book = Book.new
+def new
+  @book = Book.new
+end
 
+def create
+  book = Book.new(book_params)
+  book.user_id = current_user.id
 
-     #一覧表示機能。ここで設定するからbook用のindexアクションはいらない。
-    @books = Book.all
-    @user = current_user
-
+  if book.save
+    flash[:notice] = "You have created book successfully."
+    redirect_to book_path(book.id)
+  else
+    render :new
   end
+end
+
+
+
+def index
+
+  @books = Book.all
+  @user = current_user
+
+end
 
   def show
   #New bookの入力欄を空欄にするため、createで代入されたインスタンス変数と、別のインスタンス変数を使う
@@ -24,33 +37,7 @@ before_action :correct_user, only: [:edit]
 
   end
 
-  def create
-        # １. データを新規登録するためのインスタンス作成
-    @book = Book.new(book_params)
-    @book.user_id = current_user.id
-    @user = current_user
-    @books = Book.all
-    # ２. データをデータベースに保存するためのsaveメソッド実行
-    # @book.save
-    # ３. トップ画面へリダイレクト
-    # redirect_to '/books'
 
-    # 詳細画面へリダイレクト
-    # redirect_to booksid_path(book.id)
-
-    # 詳細画面へリダイレクトしたときに、成功しましたと言うメッセージを表示させる。
-    # https://pikawaka.com/rails/flash
-    if @book.save
-      flash[:notice] = "You have created book successfully."
-      redirect_to new_book_book_image_path(@book.id)
-    else
-      render :index
-      # render template: "users/show"
-
-    end
-
-
-  end
 
 
   def edit
@@ -100,7 +87,7 @@ before_action :correct_user, only: [:edit]
   private
   # ストロングパラメータ
     def book_params
-      params.require(:book).permit(:title,:body_question, :body_answer, :user_id, :author, :page, :chapter,:section,:isbn)
+      params.require(:book).permit(:title, :author, :isbn, :book_image, :body)
     end
 
 # https://qiita.com/nao0725/items/47606b8975603a12fd5e

@@ -1,31 +1,51 @@
 <!--全体-->
 <main>
-   <% if @book.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @book.errors.count %>errors prohibited this book from being saved:</h2>
-      <ul>
-      <% @book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
 
-  <p id="notice"><%= flash[:notice] %></p>
-  <div class='container px-5 px-sm-0'>
-    <div class='row'>
+<!--ユーザーが投稿したbookのリスト-->
+<div class='col-md-8 offset-md-1'>
+  <h2>Books</h2>
+  <table class='table table-hover table-inverse'>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Title</th>
+        <th>Autor</th>
+        <th>ISBN</th>
+        <th>Body</th>
+      </tr>
+    </thead>
 
-<!--左部分-->
-     <%= render 'books/left', book: @book ,user: @user %>
-
-
-<!--右部分 -->
-<!--ログインしているユーザーが投稿した全bookのリスト-->
-<!--usersコントローラーのshowアクションで定義した@booksインスタンスからデータをよびだし -->
-     <%= render 'books/right', books: @books ,user: @user%>
-
+<!--usersコントローラーのshowアクションで定義した@user_booksインスタンスからデータをよびだし -->
+<!--booksコントローラーのindexアクションで定義した@booksインスタンスからデータをよびだし -->
+    <% @books.each do |book| %>
+    <tbody>
+      <tr>
+        <td class="text-break">
+          <%= link_to user_path(book.user_id) do %>
+              <%= attachment_image_tag book.user, :profile_image, :fit, 100, 100, fallback: "default-image.jpg" %>
+              <br/>
+              <%= book.user.name %>
+          <% end %>
+        </td>
+        <td class="text-break">
+          <%= link_to book_path(book) do %>
+              <%= attachment_image_tag book, :book_image, :fit, 100, 100, fallback: "default-image.jpg" %>
+              <br/>
+              <%= book.title %>
+          <% end %>
+        </td>
+        <td class="text-break"><%= book.author %></td>
+        <td class="text-break"><%= book.isbn %></td>
+        <td class="text-break"><%= book.body %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>
 
 <!--全体-->
-    </div>
   </div>
+</div>
 </main>

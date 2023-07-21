@@ -6,8 +6,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :edit, :update]
 
-  resources :books, only: [:index, :show, :create, :edit, :update, :destroy] do
-    resources :book_images, only: [:new, :edit, :create, :update, :destroy]
+  resources :books do
+    resources :book_articles
+    resources :book_images
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
