@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'home/about', to: 'homes#about'
 
   resources :users, only: [:index, :show, :edit, :update]
+  get 'users/:id/userbooks', to: 'users#userbooks',as: 'show_userbooks'
 
   resources :books do
     resources :book_articles
