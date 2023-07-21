@@ -1,0 +1,65 @@
+<!--Bootstrap部分  -->
+<div class="container">
+ <div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
+  <% if @bar.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @bar.errors.count %>errors prohibited this book from being saved:</h2>
+      <ul>
+      <% @bar.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h1>New Book Article</h1>
+
+  <%= form_with model: @bar, url: {controller: 'book_articles', action: 'create' }, local:true do |f| %>
+    <div class="form-group">
+      <%=f.label :book_id,"Book Title"%></br>
+      <%= f.collection_select :book_id, @user_books, :id, :title, class:"form-control"%>
+    </div>
+    
+    <div class="form-group">
+      <%=f.label :page,"Page"%>
+      <%= f.number_field :page,class:"form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%=f.label :chapter,"Chapter"%>
+      <%= f.number_field :chapter,class:"form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%=f.label :section,"Section"%>
+      <%= f.number_field :section,class:"form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%=f.label :title,"Question"%>
+      <%= f.text_field :title,class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%=f.label :body,"Explanation"%>
+      <%= f.text_field :body,class:"form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%=f.label :article_image,"Image"%>
+      <%= f.attachment_field :article_image, class:"form-control-file", id:"inputImage" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit 'Create Book',class: "btn btn-success" %>
+    </div>
+  <% end %>
+
+  <%= link_to "Back", users_path %>
+
+<!--Bootstrap部分  -->
+  </div>
+ </div>
+</div>

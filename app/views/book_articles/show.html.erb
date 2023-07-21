@@ -1,0 +1,69 @@
+<!--全体-->
+<main>
+  <p id="notice"><%= flash[:notice] %></p>
+  <div class='container px-5 px-sm-0'>
+    <div class='row'>
+
+<!--右部分 -->
+<!--ログインしているユーザーが投稿したbook　1冊だけ表示-->
+      <div class='col-md-8 offset-md-1'>
+        <h2>Book Article detail</h2>
+
+        <table class='table table-hover table-inverse'>
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Book Title</th>
+              <th>Page</th>
+              <th>Chapter</th>
+              <th>Section</th>
+              <th>Question</th>
+              <th>Explanation</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td class="text-break">
+                <%= link_to user_path(@bar.user_id) do %>
+                    <%= attachment_image_tag @bar.user, :profile_image, :fit, 100, 100, fallback: "default-image.jpg" %>
+                    <br/>
+                    <%= @bar.user.name %>
+                <% end %>
+              </td>
+              <td class="text-break">
+                <%= link_to book_path(@bar.book_id) do %>
+                    <%= attachment_image_tag @bar.book, :book_image, :fit, 100, 100, fallback: "default-image.jpg" %>
+                    <br/>
+                    <%= @bar.book.title %>
+                <% end %>
+              </td>
+              <td class="text-break"><%= @bar.page %></td>
+              <td class="text-break"><%= @bar.chapter %></td>
+              <td class="text-break"><%= @bar.section %></td>
+              <td class="text-break"><%= @bar.title %></td>
+              <td class="text-break"><%= @bar.body %></td>
+
+              <% if @user.id == current_user.id %>
+                <!--rails routesのPrefixを使う。アンダーバーの前。-->
+                <!--classの後は、「：」。参照サイト：https://railsdoc.com/page/link_to-->
+                <td><%= link_to 'Edit', edit_book_book_article_path(@bar.book.id, @bar.id),class: "btn btn-success"%></td>
+                <td><%= link_to "Destroy", book_book_article_path(@bar.book.id, @bar.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか？"%></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+        
+        <%= attachment_image_tag @bar, :article_image, :fit, 500, 500, fallback: "default-image.jpg" %>
+        <br/>
+        Image
+        
+        
+      </div>
+
+
+<!--全体-->
+    </div>
+  </div>
+</main>
