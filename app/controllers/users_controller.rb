@@ -15,6 +15,11 @@ before_action :correct_user, only: [:edit]
     @user = User.find(params[:id])
     @user_books = @user.books.all
   end
+  
+  def userbookscreate
+    @user = User.find(params[:id])
+    @user_books = @user.books.all
+  end
 
   def edit
     @user = User.find(params[:id])

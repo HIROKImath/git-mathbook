@@ -50,12 +50,13 @@
                 book_book_articles_path(@book.id), class: "btn btn-success"%>
               </td>
 
-
+              <% if current_user.present? %>
               <% if @user.id == current_user.id %>
                 <!--rails routesのPrefixを使う。アンダーバーの前。-->
                 <!--classの後は、「：」。参照サイト：https://railsdoc.com/page/link_to-->
                 <td><%= link_to 'Edit', edit_book_path(@book.id),class: "btn btn-success"%></td>
                 <td><%= link_to "Destroy", book_path(@book.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか？"%></td>
+              <% end %>
               <% end %>
             </tr>
           </tbody>

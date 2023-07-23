@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :edit, :update]
   get 'users/:id/userbooks', to: 'users#userbooks',as: 'show_userbooks'
+  get 'users/:id/userbooksselect', to: 'users#userbookscreate',as: 'select_userbooks'
 
   resources :books do
     resources :book_articles
