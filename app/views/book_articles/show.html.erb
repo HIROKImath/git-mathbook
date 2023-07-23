@@ -54,12 +54,15 @@
             </tr>
           </tbody>
         </table>
-        
+
         <%= attachment_image_tag @bar, :article_image, :fit, 500, 500, fallback: "default-image.jpg" %>
         <br/>
-        Image
-        
-        
+        Article Image
+
+        <div class='row'>
+          <%= link_to 'Back Articles Index', book_book_articles_path(@bar.book.id) ,class: "btn btn-success" %>
+        </div>
+
       </div>
 
 

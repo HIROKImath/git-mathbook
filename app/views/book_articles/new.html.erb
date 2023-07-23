@@ -16,12 +16,13 @@
 
   <h1>New Book Article</h1>
 
-  <%= form_with model: @bar, url: {controller: 'book_articles', action: 'create' }, local:true do |f| %>
+
+  <%= form_with(model:[@book, @bar], local: true) do |f| %>
     <div class="form-group">
       <%=f.label :book_id,"Book Title"%></br>
       <%= f.collection_select :book_id, @user_books, :id, :title, class:"form-control"%>
     </div>
-    
+
     <div class="form-group">
       <%=f.label :page,"Page"%>
       <%= f.number_field :page,class:"form-control"%>
